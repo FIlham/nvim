@@ -34,6 +34,11 @@ return {
             },
         }
 
+        vim.lsp.config("lua_ls", {
+            cmd = { "lua-language-server" },
+        })
+        vim.lsp.enable("lua_ls")
+
         for _, server in ipairs(servers) do
             vim.lsp.enable(server)
         end
