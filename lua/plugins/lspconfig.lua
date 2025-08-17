@@ -42,5 +42,9 @@ return {
         for _, server in ipairs(servers) do
             vim.lsp.enable(server)
         end
+
+        vim.keymap.set("n", "<leader>fb", function ()
+            vim.lsp.buf.format()
+        end, { desc = "Format file", noremap = true, silent = true })
     end
 }
