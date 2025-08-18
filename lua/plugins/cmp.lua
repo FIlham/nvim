@@ -9,6 +9,7 @@ return {
                 require "luasnip.loaders.from_vscode".lazy_load()
             end
         },
+        "neovim/nvim-lspconfig",
         "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-nvim-lsp",
@@ -31,6 +32,13 @@ return {
                     },
                     ellipsis_char = '...',
                     show_labelDetails = true,
+                    menu = ({
+                        buffer = "[Buffer]",
+                        nvim_lsp = "[LSP]",
+                        luasnip = "[LuaSnip]",
+                        nvim_lua = "[Lua]",
+                        latex_symbols = "[Latex]",
+                    })
                 },
             },
 
@@ -40,20 +48,17 @@ return {
                 end
             },
             mapping = {
-                ['<CR>'] = cmp.mapping(function(fallback)
+                ["<CR>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
-                        if luasnip.expandable() then
-                            luasnip.expand()
-                        else
-                            cmp.confirm({
-                                select = true,
-                            })
+                        local entry = cmp.get_selected_entry()
+                        if not entry then
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
                         end
+                        cmp.confirm()
                     else
                         fallback()
                     end
-                end),
-
+                end, { "i", "s", "c", }),
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
