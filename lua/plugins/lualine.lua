@@ -1,5 +1,6 @@
 return {
     'nvim-lualine/lualine.nvim',
+    event = "VeryLazy",
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     init = function()
         vim.g.lualine_laststatus = vim.o.laststatus
@@ -14,10 +15,10 @@ return {
         return {
             options = {
                 disabled_filetypes = {
-                    statusline = { "alpha"}
+                    statusline = { "alpha" }
                 }
             },
-                globalstatus = vim.o.laststatus == 3,
+            globalstatus = vim.o.laststatus == 3,
             sections = {
                 lualine_a = { { 'mode', icons_enabled = true } },
                 lualine_b = { 'diagnostics' },

@@ -12,6 +12,7 @@ vim.o.termguicolors = true
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 vim.o.scrolloff = 4
+vim.o.sidescrolloff = 4
 vim.o.showtabline = 1
 vim.o.laststatus = 3
 vim.o.fillchars = "eob: "
